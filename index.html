@@ -231,6 +231,16 @@
   .srclink .su{color:var(--txt-dim);word-break:break-all}
   .srclink .sty{font-family:var(--mono);font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 
+  .toollink{color:var(--teal);text-decoration:none;border-bottom:1px dotted var(--teal-line);transition:.15s}
+  .toollink:hover{color:var(--amber);border-bottom-color:var(--amber)}
+  .extlink{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid var(--teal-line);border-radius:6px;padding:4px 10px;background:rgba(84,215,196,.06)}
+  .extlink:hover{color:var(--amber);border-color:var(--amber-line);text-decoration:none}
+  .dh h2 a{color:inherit;text-decoration:none;border-bottom:2px solid var(--teal-line);transition:.2s}
+  .dh h2 a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+  .card h3 a{color:inherit;text-decoration:none}
+  .card h3 a:hover{color:var(--amber);text-decoration:underline}
+  .tn a{color:inherit;text-decoration:none}
+  .tn a:hover{color:var(--amber);text-decoration:underline}
   /* ---- footer ---- */
   footer{border-top:1px solid var(--line);padding:30px 0 60px;color:var(--muted);font-size:13px}
   footer h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 10px}
@@ -432,220 +442,220 @@ const SRC={
 const _=(c,n)=>[c,n||''];
 const X=['','']; // not stated
 const TOOLS=[
- {n:'Paperclip',c:'cp',lic:'MIT',sh:'yes',x:90,y:96,cl:5,m:1,pc:1,sr:[1,2,3,4,5,7],
+ {n:'Paperclip',c:'cp',lic:'MIT',sh:'yes',x:90,y:96,cl:5,m:1,pc:1,sr:[1,2,3,4,5,7],u:'https://github.com/paperclipai/paperclip',
   b:'Open-source, self-hosted control plane that orchestrates heterogeneous AI agents into an "autonomous company" — org charts, goal-traced tasks, budgets, governance, full tracing.',
   vp:'The baseline. A control plane (not execution plane) that is unopinionated about runtimes: "if it can receive a heartbeat, it\'s hired."',
   q:'Paperclip is unopinionated about agent runtimes… anything that can receive a heartbeat signal.',
   d:{o:_('y','Control-plane org chart: board → CEO → CTO/CMO → workers; company is the unit of organization'),g:_('y','Human acts as board of directors; agents cannot hire/execute strategy without approval; pause/reassign any agent'),b:_('y','Per-agent monthly budget, hard stop + auto-pause at 100%, warn at 80%; cost tracked per agent/task/project/goal'),h:_('y','Every task chains to a parent up to the company goal ("why am I doing this?")'),e:_('y','Adapters: Claude Code, Codex, Cursor, OpenClaw, Python, shell, HTTP webhooks'),s:_('y','DB-backed heartbeat wakeup queue + event triggers + cron/webhook routines'),r:_('y','Embedded/own Postgres; many companies per deployment with full data isolation')}},
 
- {n:'Runtm',c:'cp',lic:'OSS',sh:'?',x:32,y:76,cl:2,m:1,sr:[24],
+ {n:'Runtm',c:'cp',lic:'OSS',sh:'?',x:32,y:76,cl:2,m:1,sr:[24],u:'https://github.com/runtm-ai/runtm',
   b:'Open-source runtime + control plane that takes code written by AI agents and safely turns it into a live, observable, disposable deployment via CLI + declarative config.',
   vp:'A deploy/runtime control plane for agent-written software, not multi-agent org orchestration; works alongside any AI IDE/CLI rather than coordinating a team.',
   d:{o:_('p','Control plane / runtime for deploying agent-written software; not multi-agent orchestration'),g:_('y','Validation before deploy; human runs "runtm approve"'),b:_('p','Deploys to Fly.io Machines with auto-stop for cost control'),h:X,e:_('p','Works with any AI IDE/CLI (Cursor, Claude Code)'),s:X,r:_('y','Zero-config SQLite on a volume or BYO Postgres')}},
 
- {n:'Mantyx',c:'cp',lic:'unknown',sh:'?',x:68,y:80,cl:3,m:1,sr:[27],
+ {n:'Mantyx',c:'cp',lic:'unknown',sh:'?',x:68,y:80,cl:3,m:1,sr:[27],u:'https://github.com/mantyx-io/mantyx-sdk',
   b:'Agent control plane with centralized MCP server management; brings agents in-house and exposes them to third parties via Google\'s A2A protocol.',
   vp:'Positions itself as an agent control plane like Paperclip, but focused on MCP-server management + A2A interoperability rather than org charts, budgets, and board approval.',
   d:{o:_('y','Control plane for agents'),g:X,b:X,h:X,e:_('y','Bring agents in-house and expose via A2A'),s:X,r:X}},
 
- {n:'Scion',c:'cp',lic:'Apache',sh:'yes',x:78,y:66,cl:3,m:1,sr:[28],
+ {n:'Scion',c:'cp',lic:'Apache',sh:'yes',x:78,y:66,cl:3,m:1,sr:[28],u:'https://github.com/GoogleCloudPlatform/scion',
   b:'Google\'s open-sourced experimental "hypervisor for agents" testbed: isolates agents in containers and provides a control plane, CLI, hub, and telemetry for agents-managing-agents patterns.',
   vp:'Has a control plane but is an execution/isolation substrate + testbed ("isolation over constraints"); commenters call it BYO-orchestration, lacking higher-level coordination.',
   q:'a "hypervisor for agents"… a substrate for agent execution is a useful primitive.',
   d:{o:_('p','Substrate where agents manage agents with autonomy, replacing codified graphs with pure agent instruction'),g:_('n','"Isolation over constraints" — safety at the infra layer, not approval gates'),b:X,h:X,e:_('y','BYO orchestration; multiple harnesses via hook system'),s:X,r:_('p','Layered state + OpenTelemetry forwarded to a cloud collector')}},
 
- {n:'Stoneforge',c:'cao',lic:'Apache',sh:'yes',x:66,y:58,cl:4,m:1,sr:[48],
+ {n:'Stoneforge',c:'cao',lic:'Apache',sh:'yes',x:66,y:58,cl:4,m:1,sr:[48],u:'https://github.com/stoneforge-ai/stoneforge',
   b:'Open-source orchestrator running 5–10+ coding agents (Claude Code, Codex, OpenCode) in parallel via a Director that decomposes goals, a dispatch daemon, isolated git worktrees, auto test/review/merge stewards, and context handoffs.',
   vp:'Like Paperclip: OSS, self-hosted, orchestrates heterogeneous coding agents, decomposes goals into dependent tasks. Unlike Paperclip: NO approval gates by default — agents push code without asking.',
   q:'A dispatch daemon assigns tasks to idle workers… each worker runs in its own git worktree.',
   d:{o:_('y','Hierarchical: a Director breaks the goal into prioritized tasks with dependencies; dispatch daemon assigns to idle workers'),g:_('n','No approval gates by default; agents read, write, and push code without asking'),b:_('n','Not stated; notes only that running many agents burns tokens fast'),h:_('y','Director breaks a goal into prioritized tasks with dependencies'),e:_('y','Claude Code, Codex, OpenCode; custom providers via PR; agents split across MAX plans'),s:_('p','Dispatch daemon assigns tasks to idle workers when available'),r:_('y','Event-sourced to SQLite + JSONL; survives restarts with full audit trail; handoff notes')}},
 
- {n:'golutra',c:'cao',lic:'OSS',sh:'yes',x:60,y:54,cl:3,m:1,sr:[47],
+ {n:'golutra',c:'cao',lic:'OSS',sh:'yes',x:60,y:54,cl:3,m:1,sr:[47],u:'https://github.com/golutra/golutra',
   b:'Local-first multi-agent collaboration workspace that sits on top of existing CLI coding tools (Claude Code, Codex, Gemini) and turns them into a structured, parallel multi-agent system with automated coordination.',
   vp:'Like Paperclip: OSS, local/self-hosted orchestration layer over heterogeneous CLI agents. Focus is parallel terminal execution + real-time sync; org-chart roles/budgets/governance are not its current scope.',
   d:{o:_('p','Multi-agent parallel execution over CLI tools; a "commander layer" that creates agents and assigns roles is planned'),g:X,b:X,h:_('p','Planned commander layer assigns roles per task complexity'),e:_('y','Sits on top of Claude Code, Codex CLI, Gemini CLI without project migration'),s:X,r:_('p','Real-time result sync + per-agent terminal logs; durable persistence not stated')}},
 
- {n:'Diraigent',c:'cao',lic:'unknown',sh:'yes',x:52,y:60,cl:3,m:1,sr:[26],
+ {n:'Diraigent',c:'cao',lic:'unknown',sh:'yes',x:52,y:60,cl:3,m:1,sr:[26],u:'https://github.com/diraigent/diraigent',
   b:'Fully self-hosted platform that runs AI coding agents (Claude Code) through structured, repeatable multi-step playbooks, spawning agents in isolated git worktrees with logging, auditability, and human review gates.',
   vp:'Like Paperclip: self-hosted, orchestrates agents with human approval gates. Narrower: coding pipelines (implement→review→merge) for a single agent type rather than heterogeneous agents with org charts and budgets.',
   d:{o:_('p','DAG/pipeline: orchestrator runs multi-step playbooks (implement → review → merge), spawns agents per task'),g:_('y','Human review gates can be placed at any pipeline step'),b:_('n','Not stated'),h:_('p','Playbook steps'),e:_('n','Currently Claude Code only'),s:X,r:_('y','Persistent knowledge base, decision log, observations; every step logged and auditable')}},
 
- {n:'Optio',c:'cao',lic:'OSS',sh:'yes',x:62,y:56,cl:3,m:1,sr:[25,28],
+ {n:'Optio',c:'cao',lic:'OSS',sh:'yes',x:62,y:56,cl:3,m:1,sr:[25,28],u:'https://github.com/jonwiggins/optio',
   b:'Open-source K8s orchestration system that runs coding agents (Claude Code, Codex) to take GitHub tickets through the full lifecycle to merged PRs, driven by a CI/review feedback loop.',
   vp:'An execution-plane orchestrator narrowly focused on ticket-to-PR coding via a CI/review feedback loop; no org charts, budgets, or board approval like Paperclip.',
   d:{o:_('p','Parallel agents, one K8s pod per repo, each agent in its own worktree'),g:_('p','Configurable review agent + CI checks; human can require reviews or stop — "semantic enforcement, not hard"'),b:_('n','Not stated'),h:_('p','Integrates ticketing (Notion/GitHub/Jira/Linear) to drive work to a PR'),e:_('p','Claude Code, Codex; per-repo MCP + skills config'),s:_('p','Feedback-driven: resumed when CI fails or review arrives'),r:_('p','Agents resumed across CI/review cycles until PR merges')}},
 
- {n:'Gastown',c:'cao',lic:'source-available',sh:'yes',x:64,y:56,cl:3,m:1,sr:[28],
+ {n:'Gastown',c:'cao',lic:'source-available',sh:'yes',x:64,y:56,cl:3,m:1,sr:[28],u:'https://github.com/gastownhall/gastown',
   b:'Agent orchestration tool chaining agents into an ecosystem with a "mayor" coordinating "polecats", driven by a road-map doc, with a beads/dolt bug database; strong coding results at high cost.',
   vp:'Goes beyond a substrate by coordinating multiple agents (like Paperclip) but commenters report it is expensive (~$50 VM/project) and locks to Claude despite config attempts.',
   q:'magic about the dialogue and coordination between the mayor and the polecats.',
   d:{o:_('y','Hierarchical ecosystem: a "mayor" coordinates "polecats"; concurrency-oriented; uses "formulas"'),g:X,b:_('n','Expensive (~$50 VM/project + Claude cost)'),h:_('y','Road-map document with inline specs, goals, milestone tasks; complexity metadata routes to cheaper models'),e:_('n','Refuses anything but Claude despite config; a fork makes opencode/codex work'),s:X,r:_('p','beads/dolt bug DB (hard to back up per commenter)')}},
 
- {n:'MetaGPT',c:'company',lic:'OSS',sh:'?',x:80,y:40,cl:4,m:1,sr:[8,9,10,11,39,43,45],
+ {n:'MetaGPT',c:'company',lic:'OSS',sh:'?',x:80,y:40,cl:4,m:1,sr:[8,9,10,11,39,43,45],u:'https://github.com/geekan/MetaGPT',
   b:'Open-source multi-agent framework that simulates a software company: LLM agents in specialized roles (PM, architect, engineer, QA) coordinated by encoded Standard Operating Procedures turn a one-line requirement into software.',
   vp:'Closest "org-of-agents" analog: company-like roles + hierarchical task decomposition. But it is an execution-plane framework producing software via a fixed SOP assembly line, with no heterogeneous external runtimes, budgets, or approval gates.',
   q:'Code = SOP(Team) — agents pass structured outputs (PRDs, diagrams, code) rather than free-form dialogue.',
   d:{o:_('y','Role-based multi-agent mirroring a software company; coordinated via SOPs and a shared global message pool'),g:_('p','Humans can initiate/observe/stop runs; no formal approval-gate workflow'),b:_('p','Cost measured as an eval metric (tokens/line) but no enforcement or hard stops'),h:_('y','PM→PRD, Architect→design, PM→per-file task list (structured decomposition)'),e:_('p','Multiple LLM backends (GPT, LLaMA, Ollama) but not heterogeneous external agent runtimes'),s:X,r:_('p','Agents store messages in memory; projects run independently, no cross-project persistence')}},
 
- {n:'ChatDev',c:'company',lic:'OSS',sh:'?',x:78,y:34,cl:3,m:1,sr:[8,9,10,11,45],
+ {n:'ChatDev',c:'company',lic:'OSS',sh:'?',x:78,y:34,cl:3,m:1,sr:[8,9,10,11,45],u:'https://github.com/OpenBMB/ChatDev',
   b:'Open-source framework simulating a virtual software company: agents in roles (CEO, CTO, programmer, tester) cooperate through dialogue to produce code and documentation.',
   vp:'Shares the "autonomous company" framing with executive roles, but is an end-to-end software-generation engine producing apps in minutes — not a control plane orchestrating external heterogeneous agents with budgets and gates.',
   d:{o:_('y','Virtual software company with CEO/CTO/programmer/tester roles collaborating via dialogue'),g:_('p','Reliance on LLMs needs human oversight/validation; security less explicitly defined'),b:_('n','248.9 tokens/line; more costly + less executable than MetaGPT per the paper'),h:_('p','Breaks complex tasks into steps handled by role-specialized agents'),e:_('p','OpenAI GPT-3.5/4'),s:X,r:_('p','Replays the entire agent conversation in a web app (transparency, not durable state)')}},
 
- {n:'AutoGPT',c:'company',lic:'OSS',sh:'?',x:40,y:36,cl:2,m:1,sr:[8,10,11,13,49],
+ {n:'AutoGPT',c:'company',lic:'OSS',sh:'?',x:40,y:36,cl:2,m:1,sr:[8,10,11,13,49],u:'https://github.com/Significant-Gravitas/AutoGPT',
   b:'Pioneering open-source autonomous agent that uses NLP to understand a goal and decompose tasks, looping to break a high-level prompt into subtasks. Classic CLI was archived in late 2024.',
   vp:'Noted as lacking strong guardrails (can loop), the opposite of Paperclip\'s governance gates and hard stops; classic version archived for runaway cost and infinite re-planning.',
   d:{o:_('p','Autonomous general-purpose agent loop'),g:_('n','Can loop without strong guardrails'),b:_('n','Classic archived for runaway token cost'),h:_('p','Lacks systematic requirement deconstruction for complex systems'),e:_('p','Built on OpenAI GPT-4'),s:X,r:X}},
 
- {n:'BabyAGI',c:'company',lic:'OSS',sh:'?',x:36,y:30,cl:2,m:0,sr:[43],
+ {n:'BabyAGI',c:'company',lic:'OSS',sh:'?',x:36,y:30,cl:2,m:0,sr:[43],u:'https://github.com/yoheinakajima/babyagi',
   b:'Demonstrates role-based task management: three chains (task creation, prioritization, execution) let agents autonomously manage tasks in parallel.',
   vp:'Its task-creation/prioritization echoes Paperclip\'s task management, but it is an autonomous task-loop without org charts, budgets, or approval gates.',
   d:{o:_('p','Three chains: task creation, prioritization, execution'),g:X,b:X,h:_('p','Agents autonomously create and prioritize tasks'),e:X,s:X,r:X}},
 
- {n:'AgentVerse',c:'company',lic:'OSS',sh:'?',x:72,y:34,cl:2,m:0,sr:[10,43,45],
+ {n:'AgentVerse',c:'company',lic:'OSS',sh:'?',x:72,y:34,cl:2,m:0,sr:[10,43,45],u:'https://github.com/OpenBMB/AgentVerse',
   b:'Multi-agent framework with role specialization and layered/hierarchical communication, used as a baseline for complex software projects.',
   vp:'Shares role specialization with Paperclip, but is a cooperative execution framework; the paper groups it among frameworks lacking systematic requirement deconstruction.',
   d:{o:_('p','Role-based cooperative framework with layered/hierarchical communication'),g:X,b:X,h:_('p','Grouped with frameworks lacking systematic decomposition'),e:X,s:X,r:X}},
 
- {n:'CrewAI',c:'framework',lic:'MIT',sh:'?',x:80,y:34,cl:4,m:1,sr:[5,8,11,13,22,35,43,49],
+ {n:'CrewAI',c:'framework',lic:'MIT',sh:'?',x:80,y:34,cl:4,m:1,sr:[5,8,11,13,22,35,43,49],u:'https://github.com/joaomdmoura/crewAI',
   b:'Open-source Python framework that coordinates groups of agents around shared goals: each agent gets a role, goal, and backstory and collaborates through a structured process.',
   vp:'The most direct framework overlap — both coordinate multiple agents around business goals via role definitions. But CrewAI is code-defined; Paperclip adds the dashboard, budget enforcement, governance, and audit it lacks.',
   q:'Each CrewAI agent gets a role, a goal, and a backstory…',
   d:{o:_('y','Role-based coordination around shared goals; sequential + parallel task execution'),g:X,b:_('n','Not provided natively (the gap Paperclip fills)'),h:_('p','Planner agent delegates to Researcher/Writer (role delegation)'),e:_('p','Several LLM integrations + Ollama; watsonx.ai'),s:_('p','Sequential + parallel task execution'),r:_('p','Noted as less mature than LangGraph for long-running stateful tasks')}},
 
- {n:'AutoGen / AG2',c:'framework',lic:'MIT',sh:'?',x:78,y:32,cl:3,m:1,sr:[5,11,13,22,35,39,43,44,45],
+ {n:'AutoGen / AG2',c:'framework',lic:'MIT',sh:'?',x:78,y:32,cl:3,m:1,sr:[5,11,13,22,35,39,43,44,45],u:'https://github.com/microsoft/autogen',
   b:'Microsoft\'s open-source Python framework centered on agents that communicate through structured conversation, with optional human-in-the-loop participants; popular in research.',
   vp:'A framework-first, open-topology conversational approach for flexibility/experimentation, versus Paperclip\'s product-first org-chart model that imposes structure for production.',
   q:'agents communicate through structured conversation, with a flexible mix of AI agents and optional human-in-the-loop participants.',
   d:{o:_('y','Conversational multi-agent topology; 0.4+ adds async messaging + modular components'),g:_('p','Optional human-in-the-loop participants in the conversation'),b:X,h:_('p','Decomposes tasks across roles, shares intermediate results'),e:_('p','Agents are independent processes communicating via message passing'),s:_('p','Event-driven; agents can wait on external events'),r:_('p','Handles distributed deployments; agents scale across servers/regions')}},
 
- {n:'LangGraph',c:'framework',lic:'MIT',sh:'?',x:60,y:30,cl:3,m:1,sr:[11,13,20,22,32,34,35,41],
+ {n:'LangGraph',c:'framework',lic:'MIT',sh:'?',x:60,y:30,cl:3,m:1,sr:[11,13,20,22,32,34,35,41],u:'https://github.com/langchain-ai/langgraph',
   b:'Stateful, graph-based framework for building multi-actor LLM systems with memory and control; a low-level foundation for custom agents with durable execution built in.',
   vp:'A foundation to engineer your own orchestration (incl. supervisor/orchestrator-worker), not a turnkey governed control plane; low-level with no enforced cognitive architecture.',
   d:{o:_('y','Spectrum from single- to multi-agent; supervisor pattern implements orchestrator-worker'),g:_('p','Human-in-the-loop checkpoints'),b:X,h:_('p','Task decomposition via graph nodes/edges with parallel branching'),e:_('p','Build-your-own multi-actor systems'),s:X,r:_('y','Durable execution; long-running agents resume from where errors occurred')}},
 
- {n:'OpenAI Agents SDK',c:'framework',lic:'OSS',sh:'?',x:40,y:28,cl:2,m:0,sr:[22],
+ {n:'OpenAI Agents SDK',c:'framework',lic:'OSS',sh:'?',x:40,y:28,cl:2,m:0,sr:[22],u:'https://github.com/openai/openai-agents-python',
   b:'OpenAI\'s structured toolset/agent runtime for agents that reason, plan, and call external APIs, with a simple API for roles, tools, and triggers.',
   vp:'An execution-plane runtime tied to OpenAI\'s endpoints, vs Paperclip\'s model/agent-agnostic control plane.',
   d:{o:_('p','Agent runtime supporting multi-step / multi-agent orchestration'),g:X,b:X,h:X,e:_('n','Native to OpenAI model endpoints'),s:_('p','Supports assigning triggers'),r:X}},
 
- {n:'OpenAI Swarm',c:'framework',lic:'MIT',sh:'?',x:70,y:26,cl:2,m:1,sr:[34,43],
+ {n:'OpenAI Swarm',c:'framework',lic:'MIT',sh:'?',x:70,y:26,cl:2,m:1,sr:[34,43],u:'https://github.com/openai/swarm',
   b:'Framework that popularized the swarm approach: each agent has a set of functions and hands off to another agent when a task is outside its specialization.',
   vp:'Represents the decentralized, no-orchestrator end of the spectrum opposite Paperclip\'s central control plane — coordination by handoffs, not a governing coordinator.',
   q:'each agent has a set of functions and can hand off to another agent when it encounters a task outside its specialization.',
   d:{o:_('y','Routines + handoffs; agents transfer the active conversation to specialists'),g:X,b:X,h:_('p','Each agent knows only its local part, not the full decomposition'),e:_('p','Each agent has its own functions; hands off out-of-scope tasks'),s:X,r:_('p','Agents share a blackboard / shared state')}},
 
- {n:'Google ADK',c:'framework',lic:'OSS',sh:'?',x:66,y:40,cl:3,m:1,sr:[22,28,44],
+ {n:'Google ADK',c:'framework',lic:'OSS',sh:'?',x:66,y:40,cl:3,m:1,sr:[22,28,44],u:'https://github.com/google/adk',
   b:'Google\'s Agent Development Kit: framework for building, orchestrating, and tracing agents with built-in multi-agent orchestration, tool use, session management, and native Gemini integration.',
   vp:'Praised for strong control-plane abstractions and bookkeeping — commenters say you "could build a Scion-like control plane on top of it" — but it lacks the ability to run any agent tool itself.',
   q:'most of the bookkeeping for a control plane is already there.',
   d:{o:_('y','Built-in multi-agent orchestration; declarative agent definition + runner abstraction'),g:X,b:X,h:_('p','Role-based task delegation'),e:_('p','Native Gemini + other model providers'),s:X,r:_('p','Session management / conversational state')}},
 
- {n:'Semantic Kernel',c:'framework',lic:'OSS',sh:'?',x:55,y:34,cl:2,m:1,sr:[22],
+ {n:'Semantic Kernel',c:'framework',lic:'OSS',sh:'?',x:55,y:34,cl:2,m:1,sr:[22],u:'https://github.com/microsoft/semantic-kernel',
   b:'Microsoft\'s .NET-first framework for orchestrating AI + pure-code "skills" into plans/workflows via a Planner abstraction, with enterprise security/compliance focus.',
   vp:'Composes AI and non-AI skills into enterprise workflows via a Planner — an execution/composition framework, vs Paperclip orchestrating whole external agents with cost/approval governance.',
   d:{o:_('p','Skill composition into plans/workflows via a "Planner" abstraction'),g:X,b:X,h:_('p','Planner handles multi-step tasks'),e:_('p','Skills can be AI or code; C#, Python, Java'),s:X,r:X}},
 
- {n:'Microsoft Agent Framework',c:'framework',lic:'OSS',sh:'?',x:45,y:32,cl:2,m:0,sr:[22],
+ {n:'Microsoft Agent Framework',c:'framework',lic:'OSS',sh:'?',x:45,y:32,cl:2,m:0,sr:[22],u:'https://github.com/microsoft/agent-framework',
   b:'Newer general-purpose Microsoft framework (distinct from AutoGen and Semantic Kernel) for agents that execute tasks and handle complex workflows, with built-in OpenTelemetry observability.',
   vp:'A flexible general-purpose agent runtime within the Microsoft ecosystem, vs Paperclip\'s vendor-neutral self-hosted control plane.',
   d:{o:_('p','General-purpose agent runtime handling complex workflows'),g:X,b:X,h:X,e:_('p','Multiple LLM providers incl. Azure OpenAI'),s:X,r:X}},
 
- {n:'Smolagents',c:'framework',lic:'OSS',sh:'?',x:25,y:22,cl:1,m:0,sr:[22],
+ {n:'Smolagents',c:'framework',lic:'OSS',sh:'?',x:25,y:22,cl:1,m:0,sr:[22],u:'https://github.com/huggingface/smolagents',
   b:'Hugging Face\'s radically simple, code-centric framework: a minimal loop where the agent writes and executes code, handling ReAct-style prompting behind the scenes.',
   vp:'A minimal single-agent code-execution loop for self-contained tasks — the opposite end from Paperclip\'s multi-agent governed control plane.',
   d:{o:_('p','Single-agent minimal code-writing/execution loop (ReAct)'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'Pydantic AI',c:'framework',lic:'OSS',sh:'?',x:22,y:24,cl:1,m:0,sr:[22],
+ {n:'Pydantic AI',c:'framework',lic:'OSS',sh:'?',x:22,y:24,cl:1,m:0,sr:[22],u:'https://github.com/pydantic/pydantic-ai',
   b:'Brings Pydantic\'s type-safe DX to agents: define inputs, tool signatures, and outputs as Python types with built-in validation and OpenTelemetry.',
   vp:'A lightweight type-safe single-agent building framework; no multi-agent control-plane overlap discussed.',
   d:{o:_('p','Single-agent, type-contract-driven'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'Agno',c:'framework',lic:'OSS',sh:'?',x:35,y:30,cl:1,m:0,sr:[22],
+ {n:'Agno',c:'framework',lic:'OSS',sh:'?',x:35,y:30,cl:1,m:0,sr:[22],u:'https://github.com/agno-agi/agno',
   b:'Platform + framework for building and managing agents focused on speed and flexibility — a Python SDK plus an optional hosted platform; agents have tools, knowledge bases, and memory.',
   vp:'Agent SDK with an optional managed hosting plane, vs Paperclip\'s self-hosted control-plane orchestration of external agents.',
   d:{o:_('p','Agent SDK; agents have tools, knowledge bases, memory'),g:X,b:X,h:X,e:_('p','Multiple model providers'),s:X,r:_('p','Memory for stateful interactions')}},
 
- {n:'Mastra',c:'framework',lic:'OSS',sh:'?',x:40,y:34,cl:2,m:0,sr:[18,22],
+ {n:'Mastra',c:'framework',lic:'OSS',sh:'?',x:40,y:34,cl:2,m:0,sr:[18,22],u:'https://github.com/mastra-ai/mastra',
   b:'TypeScript-native framework specialized for building agents and orchestrating LLM workflows, with primitives for agents, RAG, and durable graph-based state machines.',
   vp:'An agent-building execution framework, not a control plane coordinating heterogeneous external agents with governance.',
   d:{o:_('p','Builds agents + orchestrates LLM workflows via graph-based state machines'),g:X,b:X,h:X,e:X,s:X,r:_('p','Durable, graph-based state machines')}},
 
- {n:'Strands',c:'framework',lic:'OSS',sh:'yes',x:38,y:30,cl:1,m:0,sr:[22],
+ {n:'Strands',c:'framework',lic:'OSS',sh:'yes',x:38,y:30,cl:1,m:0,sr:[22],u:'https://github.com/strandsai/strands',
   b:'Model-agnostic agent framework that runs anywhere (AWS, other clouds, on-prem), supporting many providers via LiteLLM with first-class OpenTelemetry tracing.',
   vp:'Like Paperclip, self-hostable + model-agnostic, but an execution-plane agent framework focused on observability rather than org charts/budgets/approval.',
   d:{o:_('p','Declarative API for single-agent behavior'),g:X,b:X,h:X,e:_('p','Model-agnostic via LiteLLM (Bedrock, Anthropic, OpenAI, Ollama)'),s:X,r:X}},
 
- {n:'CAMEL',c:'framework',lic:'OSS',sh:'?',x:74,y:28,cl:2,m:0,sr:[11,43],
+ {n:'CAMEL',c:'framework',lic:'OSS',sh:'?',x:74,y:28,cl:2,m:0,sr:[11,43],u:'https://github.com/camel-ai/camel',
   b:'Role-playing multi-agent framework with cooperating User and Assistant agents and a hierarchical structure guiding role-based conversation toward task completion.',
   vp:'Grouped under multi-agent/role-playing patterns; little substantive detail to contrast with Paperclip.',
   d:{o:_('p','Role-playing with cooperating User/Assistant agents; hierarchical'),g:X,b:X,h:_('p','Task-specific agent guides conversation toward completion'),e:X,s:X,r:X}},
 
- {n:'LangChain',c:'framework',lic:'OSS',sh:'?',x:45,y:24,cl:2,m:0,sr:[5,10,14,43,44],
+ {n:'LangChain',c:'framework',lic:'OSS',sh:'?',x:45,y:24,cl:2,m:0,sr:[5,10,14,43,44],u:'https://github.com/langchain-ai/langchain',
   b:'Foundational LLM orchestration library: composable chains, tool integrations, RAG, custom agent loops (LangGraph for stateful multi-agent, LangSmith for observability).',
   vp:'A library to build orchestration yourself ("assembling from parts") vs Paperclip\'s out-of-the-box product; more flexible, but requires real engineering before production.',
   q:'It\'s a library developers use to write their own orchestration logic.',
   d:{o:_('p','Composable building blocks + custom agent loops'),g:X,b:X,h:_('p','Noted to lack systematic requirement deconstruction'),e:X,s:X,r:_('p','LangGraph adds stateful workflows; LangSmith adds observability')}},
 
- {n:'SuperAGI',c:'framework',lic:'OSS',sh:'?',x:62,y:40,cl:3,m:1,sr:[6,11,12,13],
+ {n:'SuperAGI',c:'framework',lic:'OSS',sh:'?',x:62,y:40,cl:3,m:1,sr:[6,11,12,13],u:'https://github.com/TransformerOptimus/SuperAGI',
   b:'Dev-first framework for building your own agents with custom logic, dedicated memory, and specific tools, enabling multi-agent setups (e.g. one watches inbox, one updates CRM, one writes the report).',
   vp:'Coordinates multiple agents on distinct duties (like Paperclip), but framed as a build-it-yourself framework rather than a control plane with governance, org charts, or budgets.',
   q:'Agent A monitors the inbox, Agent B updates CRM, Agent C creates the weekly report.',
   d:{o:_('p','Concurrent agent execution with toolkits + an action console'),g:X,b:X,h:_('p','Multi-agent task division by duty'),e:X,s:X,r:_('p','Vector DB memory (Pinecone, Weaviate, Qdrant)')}},
 
- {n:'Temporal',c:'durable',lic:'MIT',sh:'yes',x:30,y:50,cl:2,m:1,sr:[14,17,18,19,21,46],
+ {n:'Temporal',c:'durable',lic:'MIT',sh:'yes',x:30,y:50,cl:2,m:1,sr:[14,17,18,19,21,46],u:'https://github.com/temporalio/temporal',
   b:'The platform that popularized durable execution: a deterministic workflow orchestrates non-deterministic activities; a central service records full event history and replays it after crashes.',
   vp:'Self-hostable like Paperclip, but an execution-plane durable workflow engine for deterministic business logic + activity retries — not a control plane with org charts, budgets, or approval gates.',
   d:{o:_('p','Durable workflow engine: deterministic workflow + non-deterministic activities; central service + self-run workers'),g:X,b:X,h:X,e:_('p','Polyglot SDKs / workers'),s:_('p','Workers poll the service; timers/queues managed centrally'),r:_('y','Full event-history replay → exactly-once activity semantics after crash')}},
 
- {n:'Inngest',c:'durable',lic:'source-available',sh:'?',x:35,y:52,cl:2,m:1,sr:[14,15,17,18,19],
+ {n:'Inngest',c:'durable',lic:'source-available',sh:'?',x:35,y:52,cl:2,m:1,sr:[14,15,17,18,19],u:'https://github.com/inngest/inngest',
   b:'Durable-execution platform bringing step-based durability to serverless + API endpoints; purely event-driven with step.run / step.sleep / step.waitForEvent primitives.',
   vp:'An execution-plane durable workflow engine — a "harness, not a framework". Source-available (SSPL/BSL, GPL after 3–4 yrs), unlike MIT Paperclip; relationship is layer-level only.',
   q:'Your agent needs a harness, not a framework.',
   d:{o:_('p','Purely event-driven: send an event, functions trigger; fan-out + decoupling over HTTP'),g:_('p','Human-in-the-loop via suspend/resume awaiting an approval signal'),b:_('n','Priced per step/event/seat; can get expensive for multi-call LLM orchestration'),h:_('p','Call another function as a step, await its result (sub-agent as a step)'),e:X,s:_('p','step.sleep / step.waitForEvent for time/event pausing'),r:_('y','Step-level durability: each step persisted; on retry skips completed steps')}},
 
- {n:'Restate',c:'durable',lic:'OSS',sh:'yes',x:30,y:52,cl:2,m:1,sr:[16,19,21],
+ {n:'Restate',c:'durable',lic:'OSS',sh:'yes',x:30,y:52,cl:2,m:1,sr:[16,19,21],u:'https://github.com/restatedev/restate',
   b:'Open-source durable-execution engine: a server proxies your services and journals every step to a persistent log, so functions resume after crashes without re-running completed steps.',
   vp:'Both OSS + self-hosted and both handle long human-approval waits; Restate makes individual code functions crash-resilient, whereas Paperclip orchestrates heterogeneous agents.',
   q:'a handler can wait for human approval for weeks or months without keeping a process running.',
   d:{o:_('p','Durable functions via a journaled log; sits between DAG orchestrators and event-driven systems'),g:_('y','Human-approval steps as durable awaits (weeks/months)'),b:X,h:X,e:_('p','TypeScript, Java/Kotlin, Go, Python, Rust'),s:_('y','Durable timers, sleeps, delayed calls, webhooks; re-attach to running tasks'),r:_('y','Every step logged before observed; in-flight execution recoverable by any worker')}},
 
- {n:'Trigger.dev',c:'durable',lic:'source-available',sh:'yes',x:32,y:50,cl:2,m:0,sr:[18,19],
+ {n:'Trigger.dev',c:'durable',lic:'source-available',sh:'yes',x:32,y:50,cl:2,m:0,sr:[18,19],u:'https://github.com/triggerdotdev/trigger.dev',
   b:'DX-focused durable background-job framework — an "easier-to-use Temporal with integrations" — with checkpoint/resume to avoid serverless timeouts.',
   vp:'An execution-plane durable-jobs framework optimized for TypeScript DX; not a multi-agent control plane.',
   d:{o:_('p','Task/Run model; workers + queues abstracted away'),g:X,b:X,h:X,e:X,s:_('p','Triggered from webhooks; long tasks pause/checkpoint/resume'),r:_('y','Auto-checkpointing at await points; "designed to never hit a timeout"')}},
 
- {n:'DBOS',c:'durable',lic:'OSS',sh:'yes',x:28,y:48,cl:2,m:0,sr:[17,19,21],
+ {n:'DBOS',c:'durable',lic:'OSS',sh:'yes',x:28,y:48,cl:2,m:0,sr:[17,19,21],u:'https://github.com/dbos-inc/dbos-transact',
   b:'Durable execution that uses Postgres as the orchestration layer: annotate functions for checkpoint-based recovery with no extra infrastructure.',
   vp:'A lightweight durable Workflow-as-code execution layer (Postgres-backed), not an AI-agent control plane.',
   d:{o:_('p','Function annotations; Postgres as the orchestration layer'),g:X,b:_('p','Does not charge for CPU wait time → cheaper bills'),h:X,e:_('p','Python, JS/TS (no Go yet)'),s:X,r:_('y','Workflow state in the same DB; can share transactions with the workflow store')}},
 
- {n:'Conductor',c:'durable',lic:'Apache',sh:'yes',x:30,y:50,cl:1,m:0,sr:[21],
+ {n:'Conductor',c:'durable',lic:'Apache',sh:'yes',x:30,y:50,cl:1,m:0,sr:[21],u:'https://github.com/Netflix/conductor',
   b:'Microservices orchestration platform (Orkes) for building scalable, durable, language-agnostic application flows.',
   vp:'A language-agnostic microservices orchestrator (execution plane), not an AI-agent control plane.',
   d:{o:_('p','Microservices orchestration'),g:X,b:X,h:X,e:_('p','Language + framework agnostic'),s:X,r:_('p','Durable application flows')}},
 
- {n:'iWF',c:'durable',lic:'OSS',sh:'?',x:28,y:48,cl:1,m:0,sr:[21],
+ {n:'iWF',c:'durable',lic:'OSS',sh:'?',x:28,y:48,cl:1,m:0,sr:[21],u:'https://github.com/indeedeng/iwf',
   b:'WorkflowAsCode API orchestration platform offering a framework + service for resilient, fault-tolerant, scalable long-running processes.',
   vp:'A WorkflowAsCode execution platform, not a control plane for heterogeneous AI agents.',
   d:{o:_('p','WorkflowAsCode API orchestration'),g:X,b:X,h:X,e:X,s:X,r:_('p','Resilient long-running processes')}},
 
- {n:'Prefect',c:'durable',lic:'OSS',sh:'yes',x:26,y:46,cl:1,m:0,sr:[18,19,21],
+ {n:'Prefect',c:'durable',lic:'OSS',sh:'yes',x:26,y:46,cl:1,m:0,sr:[18,19,21],u:'https://github.com/PrefectHQ/prefect',
   b:'Python-native workflow orchestrator for data/ML, emphasizing observability, fault-tolerance, and hybrid execution via Cloud or self-hosted Prefect Orion.',
   vp:'A data/ML workflow orchestrator, not a heterogeneous-agent control plane; governance dimensions not addressed.',
   d:{o:_('p','Python-native workflow orchestration (Cloud or self-hosted Orion)'),g:X,b:X,h:X,e:X,s:_('p','Scheduling + lifecycle management'),r:_('p','Fault-tolerance + hybrid execution')}},
 
- {n:'Dagster',c:'durable',lic:'Apache',sh:'yes',x:26,y:46,cl:1,m:0,sr:[19],
+ {n:'Dagster',c:'durable',lic:'Apache',sh:'yes',x:26,y:46,cl:1,m:0,sr:[19],u:'https://github.com/dagster-io/dagster',
   b:'Data orchestration / workflow tool, cited by a commenter as a more capable, less restrictively licensed alternative to Inngest.',
   vp:'A data orchestrator (execution plane); not an AI-agent control plane.',
   d:{o:_('p','Data orchestration / workflow'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'Airflow',c:'durable',lic:'Apache',sh:'yes',x:24,y:44,cl:1,m:0,sr:[18,46],
+ {n:'Airflow',c:'durable',lic:'Apache',sh:'yes',x:24,y:44,cl:1,m:0,sr:[18,46],u:'https://github.com/apache/airflow',
   b:'Mature Python orchestrator for authoring, scheduling, and monitoring data pipelines defined as code (DAGs).',
   vp:'A data-engineering pipeline scheduler (DAGs in Python); not an AI-agent control plane.',
   d:{o:_('p','Workflows as code (DAGs) in Python'),g:X,b:X,h:X,e:X,s:_('p','Built for scheduling pipelines'),r:X}},
 
- {n:'Flyte',c:'durable',lic:'Apache',sh:'yes',x:26,y:44,cl:1,m:0,sr:[21],
+ {n:'Flyte',c:'durable',lic:'Apache',sh:'yes',x:26,y:44,cl:1,m:0,sr:[21],u:'https://github.com/flyteorg/flyte',
   b:'Container-native, type-safe workflow + pipelines platform (Golang) optimized for large-scale processing and ML, with workflows writable in any language.',
   vp:'A container-native ML/data pipeline platform; not a control plane coordinating AI agents under governance.',
   d:{o:_('p','Container-native workflows + pipelines'),g:X,b:X,h:X,e:_('p','Workflows in any language'),s:X,r:X}},
@@ -665,55 +675,55 @@ const TOOLS=[
   vp:'Managed edge durable execution; not an agent control plane.',
   d:{o:_('p','Durable workflows at the edge'),g:X,b:X,h:X,e:X,s:X,r:_('p','Durable execution with edge runtime')}},
 
- {n:'AIOS',c:'agentos',lic:'MIT',sh:'yes',x:50,y:58,cl:3,m:1,sr:[38,39,40,41],
+ {n:'AIOS',c:'agentos',lic:'MIT',sh:'yes',x:50,y:58,cl:3,m:1,sr:[38,39,40,41],u:'https://github.com/agiresearch/AIOS',
   b:'"AI Agent Operating System" (Rutgers): an OS-style kernel that isolates LLM + tool resources from agent apps, providing scheduling, context, memory, storage, and access-control for many concurrent agents.',
   vp:'An execution/resource-management plane — an OS kernel scheduling agent "syscalls" — vs Paperclip\'s higher-level org/governance control plane. Onboards agents from many frameworks (ReAct, AutoGen, MetaGPT…).',
   q:'embeds the LLM into the operating system… agents as apps, the LLM as the OS.',
   d:{o:_('y','Kernel schedules agent "syscalls" (FIFO/Round-Robin) across LLM/memory/storage/tool/access modules'),g:_('p','User-intervention gate requires confirmation before irreversible ops (delete/overwrite/privilege)'),b:X,h:X,e:_('y','SDK adapters let agents from ReAct, Reflexion, AutoGen, Open Interpreter, MetaGPT onboard without code change'),s:_('p','Kernel-level scheduling + context switching (no cron/heartbeat)'),r:_('y','Storage manager: local files + vector DB with versioned rollback; LRU-K memory eviction')}},
 
- {n:'Letta / MemGPT',c:'agentos',lic:'OSS',sh:'yes',x:20,y:50,cl:2,m:1,sr:[40,49],
+ {n:'Letta / MemGPT',c:'agentos',lic:'OSS',sh:'yes',x:20,y:50,cl:2,m:1,sr:[40,49],u:'https://github.com/letta-ai/letta',
   b:'Augments an LLM with virtual-memory-style self-managed context: the model edits its own tiered memory (core, recall, archival) and runs as an OS-like process on timed "heartbeat" events.',
   vp:'A single-agent execution/memory runtime focused on transcending the context window; its "heartbeat" is an internal loop for one model, not Paperclip\'s cross-agent scheduling — no org charts or budgets.',
   q:'gives the LLM the option to "transcend" the confines of its own context window.',
   d:{o:_('p','Single-agent runtime; the LLM acts as the OS process managing its own memory/tools'),g:X,b:X,h:X,e:X,s:_('p','Event system runs the LLM in bursts on user events + timed "heartbeat" events; can request more heartbeats'),r:_('y','Out-of-context memory on filesystem/DB (recall + infinite archival), moved into context via function calls')}},
 
- {n:'OpenFang',c:'agentos',lic:'OSS',sh:'?',x:45,y:56,cl:3,m:1,sr:[6],
+ {n:'OpenFang',c:'agentos',lic:'OSS',sh:'?',x:45,y:56,cl:3,m:1,sr:[6],u:'https://github.com/RightNow-AI/openfang',
   b:'Rust-based agent operating system (not just a framework) offering 7 autonomous "Hands" — specialized modules for scheduling, knowledge graphs, dashboards, and more (v0.1.0).',
   vp:'Reaches toward an OS/platform layer with built-in scheduling, knowledge graphs, and dashboards via its "Hands", but the source mentions no governance, budgets, org charts, or human approval gates.',
   q:'not an agent framework, but an operating system… 7 autonomous "Hands".',
   d:{o:_('p','Agent OS with 7 autonomous "Hands" (specialized modules)'),g:X,b:X,h:X,e:X,s:_('p','A dedicated "Hand" for scheduling'),r:_('p','A knowledge-graph module')}},
 
- {n:'n8n',c:'lowcode',lic:'source-available',sh:'yes',x:45,y:56,cl:2,m:1,sr:[13,18,20,46],
+ {n:'n8n',c:'lowcode',lic:'source-available',sh:'yes',x:45,y:56,cl:2,m:1,sr:[13,18,20,46],u:'https://github.com/n8n-io/n8n',
   b:'Workflow automation tool with native AI Agent nodes (on LangChain) connecting 400+ apps, so agents trigger from real events and act across a business\'s tools.',
   vp:'An event-triggered workflow automation layer wiring agents into operational apps — complementary to, but distinct from, Paperclip\'s agent-coordinating control plane. Fair-code license limits commercial SaaS.',
   d:{o:_('p','Event-driven workflow automation with native AI Agent nodes across 400+ integrations'),g:X,b:X,h:X,e:_('p','LangChain-based agent nodes + broad app integrations'),s:_('y','Agents trigger from real events (Stripe charge, Intercom message, Salesforce stage)'),r:_('p','Queue mode with Redis; SQLite/PostgreSQL')}},
 
- {n:'Dify',c:'lowcode',lic:'OSS',sh:'yes',x:48,y:58,cl:2,m:1,sr:[13,20,45,46],
+ {n:'Dify',c:'lowcode',lic:'OSS',sh:'yes',x:48,y:58,cl:2,m:1,sr:[13,20,45,46],u:'https://github.com/langgenius/dify',
   b:'Leading open-source LLMOps + agent platform with a visual workflow builder for chatbots, RAG pipelines, agentic workflows, and API endpoints without engineering.',
   vp:'A visual no-code platform for building/deploying AI apps and workflows, vs Paperclip coordinating autonomous heterogeneous agents under governance.',
   d:{o:_('p','Visual workflow builder for agentic workflows, RAG, API endpoints'),g:X,b:X,h:X,e:X,s:X,r:_('p','Prompt versioning + observability; self-hostable via Docker')}},
 
- {n:'Coze Studio',c:'lowcode',lic:'OSS',sh:'yes',x:46,y:58,cl:2,m:0,sr:[20],
+ {n:'Coze Studio',c:'lowcode',lic:'OSS',sh:'yes',x:46,y:58,cl:2,m:0,sr:[20],u:'https://github.com/coze-dev/coze-studio',
   b:'ByteDance open-source enterprise-grade agent development platform (Go + React/TS), supporting drag-and-drop node construction for agent workflows across the full lifecycle.',
   vp:'Self-hosted and orchestrates agent workflows like Paperclip, but a visual low-code app-building platform rather than a control plane with org charts/budgets/approval gates.',
   d:{o:_('p','DAG/pipeline via drag-and-drop node-based agent workflows'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'FastGPT',c:'lowcode',lic:'source-available',sh:'yes',x:35,y:52,cl:1,m:0,sr:[20],
+ {n:'FastGPT',c:'lowcode',lic:'source-available',sh:'yes',x:35,y:52,cl:1,m:0,sr:[20],u:'https://github.com/labring/FastGPT',
   b:'Open-source platform focused on knowledge-base RAG: data preprocessing, vector retrieval, RAG building, and a visual flow editor for complex Q&A, with OpenAI-compatible API.',
   vp:'A RAG/knowledge-base Q&A workflow builder; source-available license restricts SaaS use. Not a multi-agent control plane.',
   d:{o:_('p','DAG/pipeline visual Q&A workflow with tool-call + plugin nodes'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'RAGFlow',c:'lowcode',lic:'Apache',sh:'yes',x:25,y:48,cl:1,m:0,sr:[20],
+ {n:'RAGFlow',c:'lowcode',lic:'Apache',sh:'yes',x:25,y:48,cl:1,m:0,sr:[20],u:'https://github.com/infiniflow/ragflow',
   b:'Open-source deep-RAG engine for high-quality, explainable retrieval over unstructured data, with "Agentic RAG" support.',
   vp:'A RAG/retrieval engine (execution-layer data pipeline), unrelated to org-level agent governance.',
   d:{o:_('p','RAG pipeline (parsing, chunking, indexing, retrieval, reranking)'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'Langflow',c:'lowcode',lic:'OSS',sh:'?',x:42,y:54,cl:1,m:0,sr:[49],
+ {n:'Langflow',c:'lowcode',lic:'OSS',sh:'?',x:42,y:54,cl:1,m:0,sr:[49],u:'https://github.com/langflow-ai/langflow',
   b:'Tool for visual agent building (drag-and-drop).',
   vp:'A visual agent-building canvas, not a coordinating control plane.',
   d:{o:_('p','Visual agent building'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'OpenClaw',c:'runtime',lic:'OSS',sh:'yes',x:18,y:58,cl:2,m:1,sr:[1,2,3,5,6,7,15,46],
+ {n:'OpenClaw',c:'runtime',lic:'OSS',sh:'yes',x:18,y:58,cl:2,m:1,sr:[1,2,3,5,6,7,15,46],u:'https://github.com/openclawhq/OpenClaw',
   b:'Continuous, autonomous "do-everything" agent runtime living inside messaging apps, with persistent file-based identity (SOUL.md / MEMORY.md), heartbeat scheduling, and sub-agents.',
   vp:'"OpenClaw is an employee, Paperclip is the company." A single autonomous agent at the execution layer — Paperclip can hire it into an org chart. Criticized as a ~430k-LOC "God Mode" security risk.',
   q:'OpenClaw is an employee, Paperclip is the company.',
@@ -734,27 +744,27 @@ const TOOLS=[
   vp:'An execution runtime control planes coordinate, not an orchestration layer itself.',
   d:{o:_('p','Local CLI/session adapter'),g:X,b:X,h:X,e:X,s:X,r:X}},
 
- {n:'Cline',c:'runtime',lic:'OSS',sh:'yes',x:16,y:44,cl:1,m:0,sr:[11],
+ {n:'Cline',c:'runtime',lic:'OSS',sh:'yes',x:16,y:44,cl:1,m:0,sr:[11],u:'https://github.com/cline/cline',
   b:'Fully open-source, editor-native coding agent that plans multi-step tasks, edits files, and runs commands with permission; model-agnostic across providers + local via Ollama.',
   vp:'An execution-plane coding agent (ask→plan→approve→execute) inside your editor, vs Paperclip orchestrating many agents.',
   d:{o:_('p','Single-agent ask-plan-approve-execute loop'),g:_('p','Permissioned: approval before risky actions; human approves plans'),b:X,h:_('p','Plans multi-step tasks (plan → PR)'),e:_('p','Model-agnostic incl. local via Ollama'),s:X,r:_('p','Observable + reversible in git')}},
 
- {n:'OpenHands',c:'runtime',lic:'OSS',sh:'?',x:22,y:42,cl:2,m:0,sr:[11,13],
+ {n:'OpenHands',c:'runtime',lic:'OSS',sh:'?',x:22,y:42,cl:2,m:0,sr:[11,13],u:'https://github.com/All-Hands-AI/OpenHands',
   b:'Open-source project for end-to-end autonomous software engineering in a sandbox that controls an editor, terminal, and browser.',
   vp:'A high-autonomy sandboxed coding agent (read issue → plan → edit → test → commit), not a control plane orchestrating heterogeneous agents.',
   d:{o:_('p','Single autonomous coding agent running the full loop'),g:_('p','Generates real GitHub PRs (implicit human review)'),b:X,h:X,e:X,s:X,r:_('p','Sandbox controls editor/terminal/browser')}},
 
- {n:'Open Interpreter',c:'runtime',lic:'OSS',sh:'yes',x:14,y:36,cl:1,m:0,sr:[11,39,49],
+ {n:'Open Interpreter',c:'runtime',lic:'OSS',sh:'yes',x:14,y:36,cl:1,m:0,sr:[11,39,49],u:'https://github.com/OpenInterpreter/open-interpreter',
   b:'Runs code locally and can control your computer; excels at data, scripting, and automation.',
   vp:'A local code-execution/scripting agent, not a multi-agent control plane.',
   d:{o:_('p','Single-agent natural-language-to-code execution loop'),g:X,b:X,h:X,e:_('p','Local + cloud LLMs'),s:X,r:X}},
 
- {n:'AgentGPT',c:'runtime',lic:'OSS',sh:'no',x:30,y:30,cl:1,m:0,sr:[13],
+ {n:'AgentGPT',c:'runtime',lic:'OSS',sh:'no',x:30,y:30,cl:1,m:0,sr:[13],u:'https://github.com/reworkd/AgentGPT',
   b:'Browser-based autonomous agent: name it, give it a goal, watch it plan and execute — zero install, a sandbox for non-technical users.',
   vp:'A cloud-only single-agent sandbox depending on third-party API keys — the opposite of Paperclip\'s self-hosted multi-agent control plane.',
   d:{o:_('p','Single autonomous agent that plans + executes from a goal in-browser'),g:X,b:_('p','Free tier; depends on third-party API keys'),h:_('p','Give it a goal; it plans and executes'),e:X,s:X,r:X}},
 
- {n:'Langfuse',c:'obs',lic:'OSS',sh:'yes',x:40,y:52,cl:1,m:0,sr:[22,23,49],
+ {n:'Langfuse',c:'obs',lic:'OSS',sh:'yes',x:40,y:52,cl:1,m:0,sr:[22,23,49],u:'https://github.com/langfuse/langfuse',
   b:'Observability platform that captures and visualizes agent "traces" — each prompt, response, and tool call — to debug, evaluate, and optimize agents in production.',
   vp:'An observability/tracing layer that pairs with agent frameworks; complementary to Paperclip\'s coordination/governance, not a substitute.',
   d:{o:_('n','Observability tool, not an orchestrator'),g:X,b:_('n','Focuses on tracing/measuring, not cost governance'),h:X,e:_('p','Integrates with many frameworks'),s:X,r:_('p','Self-hosted tracing of agent activity')}},
@@ -764,7 +774,7 @@ const TOOLS=[
   vp:'An observability/debugging/eval plane, complementary to a coordination/governance control plane.',
   d:{o:_('n','Observability integration'),g:X,b:X,h:X,e:X,s:X,r:_('p','Session logs + traces')}},
 
- {n:'AgentOps',c:'obs',lic:'OSS',sh:'?',x:40,y:50,cl:1,m:0,sr:[49],
+ {n:'AgentOps',c:'obs',lic:'OSS',sh:'?',x:40,y:50,cl:1,m:0,sr:[49],u:'https://github.com/AgentOps-AI/agentops',
   b:'Production-grade testing/observability solution for agents.',
   vp:'A testing/observability layer, complementary to orchestration.',
   d:{o:_('n','Observability/testing'),g:X,b:X,h:X,e:X,s:X,r:X}}
@@ -816,6 +826,19 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const code=c=>c==='y'?'y':c==='p'?'p':c==='n'?'n':'x';
 const glyph=c=>c==='y'?'●':c==='p'?'◐':c==='n'?'○':'—';
 const licClass=l=>'lic-'+l;
+function linkify(text){
+  if(!text)return text;
+  let html=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const sorted=[...TOOLS].sort((a,b)=>b.n.length-a.n.length);
+  for(const t of sorted){
+    if(!t.u)continue;
+    const esc=t.n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const re=new RegExp(`(${esc})(?![^<]*>)`,'g');
+    html=html.replace(re,`<a href="${t.u}" target="_blank" rel="noopener" class="toollink">$1</a>`);
+  }
+  return html;
+}
+
 
 document.getElementById('m-tools').textContent=TOOLS.length;
 document.getElementById('m-cats').textContent=Object.keys(CATS).length;
@@ -857,7 +880,7 @@ function renderMap(){
     d.style.left=t.x+'%';d.style.bottom=t.y+'%';
     d.style.animationDelay=(i*12)+'ms';
     const sz=8+t.cl*2.4;
-    d.innerHTML=`<div class="pt" style="width:${sz}px;height:${sz}px;background:${CATS[t.c].color}"></div><div class="lbl">${t.n}</div>`;
+    d.innerHTML=`<div class="pt" style="width:${sz}px;height:${sz}px;background:${CATS[t.c].color}"></div><div class="lbl">${t.u?`<a href="${t.u}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">${t.n}</a>`:t.n}</div>`;
     d.addEventListener('click',()=>openDrawer(t));
     wrap.appendChild(d);
   });
@@ -877,10 +900,10 @@ function renderCards(){
     const pips=[1,2,3,4,5].map(n=>`<i class="${n<=t.cl?'on':''}"></i>`).join('');
     return `<div class="card" style="--cat:${CATS[t.c].color}" data-n="${t.n}">
       <div class="ct">${CATS[t.c].label}${t.pc?' · baseline':''}</div>
-      <h3>${t.n}</h3>
+      <h3>${t.u?`<a href="${t.u}" target="_blank" rel="noopener">${t.n}</a>`:t.n}</h3>
       <div class="badges"><span class="bdg ${licClass(t.lic)}">${t.lic}</span>
         <span class="bdg">self-host: ${t.sh}</span><span class="bdg">${t.sr.length} src</span></div>
-      <div class="blurb">${t.b}</div>
+      <div class="blurb">${linkify(t.b)}</div>
       <div class="dimrow">${dims}</div>
       <div class="cardfoot"><span class="pips" title="closeness to Paperclip">${pips}</span><span>detail ▸</span></div>
     </div>`;
@@ -897,9 +920,9 @@ function renderMatrix(){
     DIMS.map(([k,l])=>`<th>${l}</th>`).join('')+`</tr></thead>`;
   const body='<tbody>'+rows.map(t=>{
     const cells=DIMS.map(([k])=>{const c=code(t.d[k][0]);const note=t.d[k][1];
-      return `<td class="dimcell"><span class="cell ${c}">${glyph(t.d[k][0])}</span>${note?`<span class="tip">${note}</span>`:''}</td>`}).join('');
+      return `<td class="dimcell"><span class="cell ${c}">${glyph(t.d[k][0])}</span>${note?`<span class="tip">${linkify(note)}</span>`:''}</td>`}).join('');
     return `<tr class="mxrow${t.pc?' pc':''}"><td class="name" data-n="${t.n}" style="--cat:${CATS[t.c].color}">
-      <span class="tn">${t.n}</span><span class="tcat">${CATS[t.c].label}</span></td>${cells}</tr>`;
+      <span class="tn">${t.u?`<a href="${t.u}" target="_blank" rel="noopener">${t.n}</a>`:t.n}</span><span class="tcat">${CATS[t.c].label}</span></td>${cells}</tr>`;
   }).join('')+'</tbody>';
   $('#mxtable').innerHTML=head+body;
   $$('#mxtable td.name').forEach(c=>c.addEventListener('click',()=>openDrawer(TOOLS.find(t=>t.n===c.dataset.n))));
@@ -927,19 +950,20 @@ function openDrawer(t){
   if(!t)return;
   const dims=DIMS.map(([k,l])=>{const v=t.d[k];const c=code(v[0]);
     return `<div class="dr"><div class="dn">${l}</div><div class="di ${c}">${glyph(v[0])}</div>
-      <div class="dt">${v[1]||'<span style="color:#4a545f">not stated in captured sources</span>'}</div></div>`}).join('');
+      <div class="dt">${linkify(v[1])||'<span style="color:#4a545f">not stated in captured sources</span>'}</div></div>`}).join('');
   const srcs=t.sr.map(n=>`<a class="srclink" href="${SRC[n][0]}" target="_blank" rel="noopener">
     <span class="sn">[${n}]</span> <span class="sty">${SRC[n][1]} · ${SRC[n][2]}</span><br><span class="su">${SRC[n][0]}</span></a>`).join('');
   $('#drawer').innerHTML=`<div class="dh" style="--cat:${CATS[t.c].color}">
       <button class="closebtn" onclick="closeDrawer()">✕</button>
       <div class="ct">${CATS[t.c].label}${t.pc?' · the baseline':''}</div>
-      <h2>${t.n}</h2>
+      <h2>${t.u?`<a href="${t.u}" target="_blank" rel="noopener">${t.n}</a>`:t.n}</h2>
+      ${t.u?`<a class="extlink" href="${t.u}" target="_blank" rel="noopener">↗ project repo</a>`:''}
       <div class="badges" style="margin-top:10px"><span class="bdg ${licClass(t.lic)}">${t.lic}</span>
         <span class="bdg">self-host: ${t.sh}</span></div>
     </div>
     <div class="db">
-      <p class="blurb">${t.b}</p>
-      <div class="vp"><span class="t">vs. Paperclip</span>${t.vp}</div>
+      <p class="blurb">${linkify(t.b)}</p>
+      <div class="vp"><span class="t">vs. Paperclip</span>${linkify(t.vp)}</div>
       <div class="axpos">
         <div class="ap"><div class="t">Autonomy axis</div><div class="v">${t.x<40?'Single-agent':t.x>62?'Multi-agent':'Mixed'}</div></div>
         <div class="ap"><div class="t">Altitude</div><div class="v">${t.y>64?'Control plane / app':t.y<38?'Library / framework':'Platform'}</div></div>
