@@ -72,14 +72,14 @@
 
   /* ---- filter bar ---- */
   .filters{padding:20px 0 18px;display:flex;flex-direction:column;gap:16px}
-  .filt-line{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
+  .filt-line{display:flex;flex-wrap:wrap;gap:14px 16px;align-items:center}
   .flabel{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-right:4px;min-width:74px}
   .chip{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;
     background:var(--panel);color:var(--txt-dim);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
   .chip:hover{border-color:var(--muted);color:var(--txt)}
   .chip .dot{width:8px;height:8px;border-radius:2px;background:var(--muted)}
-  .chip.on{color:var(--ink);font-weight:700}
-  .chip.on[data-c]{border-color:transparent}
+  .chip.on{background:var(--teal);color:var(--ink);font-weight:700;border-color:transparent}
+  .chip.on[data-c]{background:var(--c);border-color:transparent}
   .search{flex:1;min-width:180px;background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);
     color:var(--txt);font-family:var(--mono);font-size:13px;padding:9px 13px}
   .search:focus{outline:none;border-color:var(--amber-line)}
