@@ -436,7 +436,20 @@ const SRC={
  48:['https://www.reddit.com/r/ClaudeAI/comments/1rl11b4/i_built_an_opensource_orchestrator_for_running/','reddit','—'],
  49:['https://www.reddit.com/r/AI_Agents/comments/1l1eca5/curated_list_of_opensource_packages_and_tools_for/','reddit','—'],
  50:['https://www.reddit.com/r/mlops/comments/1lf73gi/a_good_article_by_anthropic_about_multiagent/','reddit','—'],
- 51:['https://github.com/Agent-Analytics/awesome-multi-agent-orchestrators','awesome-list','—']
+ 51:['https://github.com/Agent-Analytics/awesome-multi-agent-orchestrators','awesome-list','—'],
+ 52:['https://hermes-agent.nousresearch.com/docs/developer-guide/architecture','docs','—'],
+ 53:['https://github.com/NousResearch/hermes-agent','repo','—'],
+ 54:['https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban','docs','—'],
+ 55:['https://hermes-agent.ai/features/multi-agent','feature page','—'],
+ 56:['https://www.reddit.com/r/hermesagent/comments/1t1dx9t/multiple_hermes_agents_with_an_orchestrator/','reddit','—'],
+ 57:['https://kenhuangus.substack.com/p/chapter-5-tool-orchestration-and','analysis','2026-04-22'],
+ 58:['https://www.mager.co/blog/2026-04-28-hermes-agent-explainer/','review','2026-04-28'],
+ 59:['https://github.com/NousResearch/hermes-agent/issues/413','issue','—'],
+ 60:['https://claude.com/blog/introducing-dynamic-workflows-in-claude-code','blog','2026-05-28'],
+ 61:['https://code.claude.com/docs/en/workflows','docs','—'],
+ 62:['https://www.mindstudio.ai/blog/claude-opus-4-8-ultra-code-mode','blog','—'],
+ 63:['https://kenhuangus.substack.com/p/claude-code-orchestration-dynamic','analysis','2026-05-29'],
+ 64:['https://www.reddit.com/r/ClaudeAI/comments/1tq9ofy/introducing_dynamic_workflows_in_claude_code/','reddit','—']
 };
 // dim helper: [code,note]
 const _=(c,n)=>[c,n||''];
@@ -677,7 +690,7 @@ const TOOLS=[
 
  {n:'AIOS',c:'agentos',lic:'MIT',sh:'yes',x:50,y:58,cl:3,m:1,sr:[38,39,40,41],u:'https://github.com/agiresearch/AIOS',
   b:'"AI Agent Operating System" (Rutgers): an OS-style kernel that isolates LLM + tool resources from agent apps, providing scheduling, context, memory, storage, and access-control for many concurrent agents.',
-  vp:'An execution/resource-management plane — an OS kernel scheduling agent "syscalls" — vs Paperclip\'s higher-level org/governance control plane. Onboards agents from many frameworks (ReAct, AutoGen, MetaGPT…).',
+  vp:'An execution/resource-management plane — an OS kernel scheduling agent "syscalls" — vs Paperclip\'s higher-level org/governance control plane. Onboards agents from many frameworks (ReAct, AutoGen, MetaGPT…). Hermes Agent (see entry) is another agentOS with a stronger persistent-identity + messaging story.',
   q:'embeds the LLM into the operating system… agents as apps, the LLM as the OS.',
   d:{o:_('y','Kernel schedules agent "syscalls" (FIFO/Round-Robin) across LLM/memory/storage/tool/access modules'),g:_('p','User-intervention gate requires confirmation before irreversible ops (delete/overwrite/privilege)'),b:X,h:X,e:_('y','SDK adapters let agents from ReAct, Reflexion, AutoGen, Open Interpreter, MetaGPT onboard without code change'),s:_('p','Kernel-level scheduling + context switching (no cron/heartbeat)'),r:_('y','Storage manager: local files + vector DB with versioned rollback; LRU-K memory eviction')}},
 
@@ -730,7 +743,7 @@ const TOOLS=[
   d:{o:_('p','Single autonomous agent; uses in-process events internally'),g:_('n','No per-agent budget/approval governance described'),b:_('n','Running one capable agent is cheaper than a fleet, but no budget controls'),h:_('n','Reads memory files + task lists, decides itself; no goal-traced hierarchy'),e:_('p','Can be a worker hired inside another platform (Paperclip)'),s:_('y','Heartbeat scheduling + cron jobs (e.g. checks inbox every 15 min)'),r:_('y','Persistent identity: SOUL.md, MEMORY.md, daily notes → learning across sessions')}},
 
  {n:'Claude Code',c:'runtime',lic:'commercial',sh:'no',x:12,y:40,cl:1,m:0,sr:[1,2,3,6,47,48],
-  b:'Anthropic\'s coding-agent runtime (Claude sessions) — one of the execution runtimes control planes orchestrate.',
+  b:'Anthropic\'s coding-agent runtime (Claude sessions) — one of the execution runtimes control planes orchestrate. Its Dynamic Workflows feature (see separate entry) can now orchestrate hundreds of parallel subagents inside a session.',
   vp:'Cited as an execution-plane runtime Paperclip orchestrates via a local CLI/session adapter — the thing being coordinated, not a competitor.',
   d:{o:_('p','Local CLI/session adapter; the control plane starts/resumes + tracks the run'),g:X,b:_('p','Can be split across MAX plans for throughput'),h:X,e:_('p','Primary worker runtime for several orchestrators'),s:_('p','Invoked via heartbeat by the control plane'),r:_('n','Context windows decay with compaction (the problem handoffs address)')}},
 
@@ -777,7 +790,19 @@ const TOOLS=[
  {n:'AgentOps',c:'obs',lic:'OSS',sh:'?',x:40,y:50,cl:1,m:0,sr:[49],u:'https://github.com/AgentOps-AI/agentops',
   b:'Production-grade testing/observability solution for agents.',
   vp:'A testing/observability layer, complementary to orchestration.',
-  d:{o:_('n','Observability/testing'),g:X,b:X,h:X,e:X,s:X,r:X}}
+  d:{o:_('n','Observability/testing'),g:X,b:X,h:X,e:X,s:X,r:X}},
+
+ {n:'Hermes Agent',c:'agentos',lic:'OSS',sh:'yes',x:45,y:65,cl:3,m:1,sr:[52,53,54,55,56,57,58],u:'https://github.com/NousResearch/hermes-agent',
+  b:'Persistent-agent OS from Nous Research: a single SOUL.md identity that compounds over time (memory, personality, auto-generated skills) with a built-in multi-agent Kanban board for background task orchestration.',
+  vp:'Like Paperclip: true multi-agent orchestration with durable SQLite queue, dispatcher, auto-decomposer, and Ralph judge. Unlike Paperclip: centered on one persistent agent identity rather than an org-chart of roles; no budget enforcement or human approval gates.',
+  q:'The orchestrator analyzes a complex task, identifies the optimal work breakdown structure, and spawns specialist worker agents with tailored context.',
+  d:{o:_('y','Kanban board: durable SQLite task queue + dispatcher spawns OS-process workers; orchestrator skill with auto-decomposition; Ralph judge for quality'),g:_('p','Ralph judge assesses output quality; no explicit human approval gates in the flow'),b:_('n','No budget tracking or cost enforcement described'),h:_('p','SOUL.md contains goals/values; orchestrator decomposes hierarchically, but no formal org-chart roles'),e:_('y','70+ tools, 20+ messaging platforms; can route to different models (kimi/minimax)'),s:_('y','Built-in cron scheduler for recurring tasks'),r:_('y','SQLite durable task queue + SOUL.md persistent memory + daily notes')}},
+
+ {n:'Claude Code Dynamic Workflows',c:'cao',lic:'commercial',sh:'no',x:55,y:55,cl:3,m:1,sr:[60,61,62,63,64],u:'https://claude.com/product/claude-code',
+  b:'Anthropic\'s orchestration layer inside Claude Code: a generated JavaScript script fans out tens to hundreds of parallel subagents with adversarial verification, convergence iteration, and cached resumability within a session.',
+  vp:'Like Paperclip: orchestrates many parallel agents with verification loops. Unlike Paperclip: session-based (no durable state across sessions), no budgets/org-charts/approval gates, and subagents are all Claude-based rather than heterogeneous external runtimes.',
+  q:'A workflow moves the plan into code. The script holds all loops, branching, and intermediate variables; Claude\'s context window holds only the final answer.',
+  d:{o:_('y','JS script is the orchestrator: fans out parallel subagents, adversarial review, convergence-driven iteration'),g:_('p','Human approves workflow launch; subagents run in fullauto mode; shell/MCP tools can still prompt mid-run'),b:_('p','Token usage shown per phase; human can request cheaper models per stage; no hard stops'),h:_('n','Flat parallel structure; no org chart or goal hierarchy'),e:_('p','Can route stages to different models, but all Claude subagents; not heterogeneous external runtimes'),s:_('n','Session-based only; no cron or long-running scheduling'),r:_('p','Cached resume within same session; fresh start if session exits')}}
 ];
 
 const PATTERNS=[
