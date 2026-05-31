@@ -170,7 +170,7 @@
   .mxlegend b{font-size:14px}
 
   /* ---- DEBATE ---- */
-  .debate{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:10px}
+  .debate{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:10px}
   .deb{border:1px solid var(--line);border-radius:var(--r);padding:18px 17px;background:var(--panel)}
   .deb.con{border-top:3px solid var(--teal)}
   .deb.pro{border-top:3px solid var(--amber)}
@@ -264,7 +264,7 @@
   <div class="meta-row">
     <span><b id="m-tools">–</b> tools &amp; approaches</span>
     <span><b id="m-cats">–</b> categories</span>
-    <span><b>51</b> captured sources</span>
+    <span><b>78</b> captured sources</span>
     <span><b>13</b> coordination patterns</span>
     <span>filter · OSS / self-hosted focus</span>
   </div>
@@ -341,11 +341,11 @@
 <!-- DEBATE -->
 <section class="view" data-view="debate">
   <h2 class="vhead">Should you build multi-agents at all?</h2>
-  <p class="vlede">The captured sources contain a live, unresolved disagreement about the very premise of a multi-agent control plane like Paperclip. Three positions, preserved with their own words.</p>
+  <p class="vlede">The captured sources contain a live, unresolved disagreement about the very premise of a multi-agent control plane like Paperclip. Four positions, preserved with their own words.</p>
   <div class="debate" id="debate"></div>
   <div class="synthbox">
     <span class="tag">⟐ Editorial synthesis (not from any single source)</span>
-    <p>The disagreement is narrower than it looks. All three camps agree <b>context engineering and durable execution are the hard part</b>. The split is about <i>write</i> work: Cognition/jxnl warn that parallel agents making conflicting decisions corrupt a single coherent output, while Anthropic shows parallel <i>read</i> work scales well. For a Paperclip-style control plane the implication is pointed — <b>its value is governance, budgets, and goal-tracing across long-running heterogeneous work, not forcing parallelism onto tasks that want a single thread.</b> Several captured projects (Stoneforge, golutra, Optio) sidestep the write-conflict problem with isolated git worktrees + handoffs rather than true parallel writes to one artifact.</p>
+    <p>The disagreement is narrower than it looks. All four camps agree <b>context engineering and durable execution are the hard part</b>. The 2026 research sharpens the split: empirical studies show single-agent wins when compute is held equal, while practitioners complain multi-agent is "the new overengineering." Yet platform builders have converged on orchestrator+subagent as the consensus pattern, and framework thinkers offer decision rules rather than ideology. For a Paperclip-style control plane the implication is pointed — <b>its value is governance, budgets, and goal-tracing across long-running heterogeneous work, not forcing parallelism onto tasks that want a single thread.</b> Several captured projects (Stoneforge, golutra, Optio) sidestep the write-conflict problem with isolated git worktrees + handoffs rather than true parallel writes to one artifact.</p>
   </div>
 </section>
 
@@ -364,7 +364,7 @@
 
 <footer><div class="wrap">
   <h4>Methodology &amp; honesty</h4>
-  <p>Built strictly from a research evidence locker of <b>51 captured web sources</b> (4 Paperclip's own docs/site + 47 alternative/approach sources), filtered to open-source / self-hosted projects and practitioner/vendor/academic discussion. Each tool below links to the source files that mention it.</p>
+  <p>Built strictly from a research evidence locker of <b>78 captured web sources</b> (4 Paperclip's own docs/site + 74 alternative/approach sources), filtered to open-source / self-hosted projects and practitioner/vendor/academic discussion. Each tool below links to the source files that mention it.</p>
   <p class="legend-note">· Tool <b style="color:var(--teal)">positions on the map</b> and <b style="color:var(--teal)">closeness scores</b> are editorial synthesis, grounded in source descriptions — they are interpretive, not measured.<br>
   · A blank (<b style="color:#333b46">—</b>) matrix cell means <b>the captured sources did not address that dimension</b> for that tool — it is <i>not</i> a claim the capability is absent.<br>
   · Purely commercial products (e.g. SmythOS, Lindy, Relevance AI) were out of scope per the open-source filter; commercial works central to the debate (Anthropic's Research system, Cognition/Devin) appear in the debate panel only.<br>
@@ -449,7 +449,21 @@ const SRC={
  61:['https://code.claude.com/docs/en/workflows','docs','—'],
  62:['https://www.mindstudio.ai/blog/claude-opus-4-8-ultra-code-mode','blog','—'],
  63:['https://kenhuangus.substack.com/p/claude-code-orchestration-dynamic','analysis','2026-05-29'],
- 64:['https://www.reddit.com/r/ClaudeAI/comments/1tq9ofy/introducing_dynamic_workflows_in_claude_code/','reddit','—']
+ 64:['https://www.reddit.com/r/ClaudeAI/comments/1tq9ofy/introducing_dynamic_workflows_in_claude_code/','reddit','—'],
+ 65:['https://arxiv.org/abs/2604.02460','paper','2026-04'],
+ 66:['https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/','research blog','2025-12'],
+ 67:['https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them','eng blog','2026-01'],
+ 68:['https://www.reddit.com/r/AI_Agents/comments/1s8gf6f/google_tested_180_agent_setups_multiagent_made/','reddit','2026-03'],
+ 69:['https://www.reddit.com/r/AI_Agents/comments/1stzag4/multi_agent_systems_are_a_total_nightmare_in/','reddit','2026-05'],
+ 70:['https://www.louisbouchard.ai/agents-and-workflows/','analysis','2026-01'],
+ 71:['https://www.velsof.com/ai-automation/multi-agent-ai-systems-2026/','analysis','2026-04'],
+ 72:['https://www.flowhunt.io/blog/multi-agent-ai-system/','synthesis','2026-05'],
+ 73:['https://www.philschmid.de/single-vs-multi-agents','guide','2025-06'],
+ 74:['https://medium.com/@maureesewilliams/the-agent-architecture-wars-why-two-ai-giants-completely-disagree-on-multi-agent-systems-d19a53364200','analysis','2025-06'],
+ 75:['https://www.forbes.com/councils/forbesbusinesscouncil/2026/03/16/multi-agent-ai-systems-the-architectural-shift-reshaping-enterprise-computing/','perspective','2026-03'],
+ 76:['https://www.cio.com/article/4143420/true-multi-agent-collaboration-doesnt-work.html','analysis','2026-03'],
+ 77:['https://the-decoder.com/more-ai-agents-isnt-always-better-new-google-and-mit-study-finds/','analysis','2025-12'],
+ 78:['https://arxiv.org/abs/2601.12307','paper','2026-01']
 };
 // dim helper: [code,note]
 const _=(c,n)=>[c,n||''];
@@ -822,27 +836,34 @@ const PATTERNS=[
 ];
 
 const DEBATE=[
- {side:'con',w:'Cognition (Devin) · jxnl analysis',h:'Don\'t build multi-agents',
-  pts:['Share full context with every action, and avoid dispersed/conflicting decision-making — architectures violating these should be ruled out by default.',
-       'Parallel subagents can\'t see each other\'s work, producing inconsistent or conflicting results (the "telephone game"); splitting a task loses critical detail.',
-       'Context engineering — dynamically building the ideal context — is the #1 job; for long tasks, use a dedicated model to compress history.',
-       'Prefer single agents that present as one continuous "consciousness", with read-only sub-agents, confidence scores, and human escalation.'],
-  q:'Multi-agent systems are fragile because decision-making is dispersed and context can\'t be shared thoroughly between agents.',
-  s:[31,33]},
- {side:'pro',w:'Anthropic Engineering',h:'Build multi-agents (for the right work)',
-  pts:['A multi-agent system (Opus lead + Sonnet subagents) beat single-agent Opus by 90.2% on Anthropic\'s internal research eval.',
-       'An orchestrator-worker pattern: a lead plans, saves its plan to memory to survive the context limit, spawns parallel subagents, then synthesizes.',
-       'But it burns ~15× more tokens than chat — only worth it for high-value, heavily-parallelizable work.',
-       'Success hinges on prompt-engineered scaling rules, evaluation, and robust production engineering (checkpoints, retries, rainbow deploys).'],
-  q:'A multi-agent system… outperformed single-agent Claude Opus 4 by 90.2% — but multi-agent systems burn ~15× more tokens than chat.',
-  s:[29,50]},
- {side:'mid',w:'LangChain',h:'It depends — on read vs. write',
-  pts:['The seemingly-opposing Cognition and Anthropic posts actually agree: context engineering is the #1 job of agent builders.',
-       'Read tasks parallelize well across subagents; write tasks (e.g. synthesizing one report) should stay with a single agent because conflicting writes are far worse.',
-       'Multi-agent only pays off for high-value, heavily parallelizable work.',
-       'Any orchestrator needs durable execution, full production tracing, and LLM-specific observability baked in.'],
-  q:'Read tasks parallelize well across subagents; write tasks should stay with a single agent.',
-  s:[32]}
+ {side:'con',w:'Research community · Google/MIT/arXiv',h:'The measurement reckoning',
+  pts:['Google and MIT ran 180 controlled configurations across GPT, Gemini, and Claude. When token budgets were held equal, single-agent systems matched or outperformed multi-agent on multi-hop reasoning — the "gains" were mostly unaccounted extra computation, not better architecture.',
+       'On sequential tasks like Minecraft planning, every multi-agent setup degraded performance by 39–70%. Independent agents amplified errors by up to 17×. Only parallelizable workloads like financial analysis saw gains (up to 81%).',
+       'An April 2026 arXiv paper formalizes this with the Data Processing Inequality: under fixed reasoning budgets, splitting context across agents introduces communication bottlenecks that necessarily discard information. Single-agent is information-theoretically dominant unless context is actively degraded.',
+       'The emerging rule of thumb: if a single agent already solves >45% of a task correctly, adding agents usually hurts. Multi-agent only pays off when the task splits cleanly into independent pieces and the base model is struggling.'],
+  q:'Many reported multi-agent advantages are better explained by unaccounted computation and context effects rather than inherent architectural benefits.',
+  s:[65,66,77,78]},
+ {side:'con',w:'Builders in production · Reddit, Velocity, Louis Bouchard',h:'Multi-agent is the new overengineering',
+  pts:['"Architecture-first agentic AI is the new blockchain everything." One consultancy audited 23 mid-market deployments and found 7 in 10 "multi-agent" briefs would be cheaper, faster, and more reliable as a single agent with a well-built tool registry. Teams pick multi-agent because it sounds impressive in planning docs.',
+       'The production pain is specific and brutal: ~70% of incidents originate at agent handoffs, not inside any individual agent. Latency compounds (each sequential agent adds 2–4 seconds), API costs jump 10×, and debugging becomes a "blame game between agents."',
+       'Practitioners describe the "telephone game": Agent A gets a company detail wrong, Agent B scores based on that wrong data, Agent C writes an email based on the bad score. By step 4, the system is "sending confidently wrong emails to leads." One builder with 30+ production systems says the fix is almost always simpler than you think.',
+       'The real test: ask whether your "agents" could be replaced by named functions in a single system prompt. If the answer is yes, multi-agent is theatre. "Boring, reliable systems > impressive ones that break."'],
+  q:'If your agents share state, run in strict sequence, and never disagree with each other, you don\'t need multi-agent systems. You need a single planner with the right tools.',
+  s:[68,69,70,71,76]},
+ {side:'pro',w:'Platform builders · Anthropic, Forbes, FlowHunt',h:'Orchestrator + subagent is the consensus',
+  pts:['By early 2026, Anthropic, OpenAI, AutoGen, Cognition, and LangChain had all converged on the same pattern: a lead agent owns the full conversation context and spawns ephemeral subagents that return compressed summaries. Peer-to-peer "GroupChat" designs have quietly lost ground.',
+       'Anthropic\'s own research system uses this pattern to identify board members across all S&P 500 IT companies — a task where single agents fail because the search space exceeds one context window. Parallel subagents investigate different facets; a coordinator synthesizes.',
+       'The economic case is paradoxical: multi-agent burns 15× more tokens than chat, yet can reduce cost per transaction on complex workflows by decomposing problems that would otherwise require repeated single-agent attempts. Klarna\'s AI assistant handled 2.3M conversations in month one, cutting resolution time from 11 minutes to under 2.',
+       'Enterprise forecasts are aggressive: McKinsey projects $1.2 trillion in additional annual revenue by 2030 from agentic systems, and the market is projected to grow from $11B in 2024 to $236B by 2034. The question is shifting from "should you?" to "how do you orchestrate reliably?"'],
+  q:'Multi-agent architecture isn\'t just an incremental improvement; it\'s a fundamental rethinking of how we deploy AI in production.',
+  s:[67,75,72,29]},
+ {side:'mid',w:'Framework thinkers · Phil Schmid, Anthropic, Google/MIT',h:'Task structure decides, not ideology',
+  pts:['The real distinction isn\'t architecture, it\'s workload: read tasks (research, analysis, information gathering) parallelize well across subagents; write tasks (code generation, content creation, file editing) should stay with a single agent because conflicting writes are far worse than slow reads.',
+       'Anthropic\'s own guidance (January 2026) says multi-agent only excels in three scenarios: when context pollution degrades performance, when tasks can run in parallel, and when specialization improves tool selection. "Outside these situations, coordination costs typically exceed the benefits."',
+       'A predictive model from the Google/MIT study uses task properties like decomposability and tool count to identify the optimal architecture for 87% of unseen tasks. The key is measuring whether your workflow is sequential or parallel before drawing boxes on a whiteboard.',
+       'Decision frameworks are emerging: Velocity Software\'s 4-question test (parallelism? critique? routing? long-horizon planning?) and Phil Schmid\'s warning — "Don\'t over-engineer a solution for today that a much simpler architecture can solve for you tomorrow."'],
+  q:'The choice between a single agent and a multi-agent system isn\'t about ideology. It is about picking the right tool for the right job.',
+  s:[73,67,66,71,31]}
 ];
 
 /* ============ STATE + RENDER ============ */
