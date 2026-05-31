@@ -2,7 +2,7 @@
 
 An evidence-grounded interactive research map exploring how open-source projects solve the problem **Paperclip** solves: coordinating many heterogeneous AI agents toward a goal.
 
-**Live site:** [https://paperclip-orchestration-landscape.netlify.app](https://paperclip-orchestration-landscape.netlify.app)
+**Live site:** [https://paperclip-alternatives.netlify.app](https://paperclip-alternatives.netlify.app)
 
 ## What's inside
 
